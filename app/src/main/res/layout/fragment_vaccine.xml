@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.kimym.covid.util.Status" />
+
+        <import type="com.kimym.covid.util.IntExtensionKt" />
+
+        <variable
+            name="viewModel"
+            type="com.kimym.covid.presentation.vaccine.VaccineViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.vaccine.VaccineFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_vaccine_first"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:padding="16dp"
+            app:layout_constraintEnd_toStartOf="@id/layout_vaccine_completed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:visibleOrNot="@{viewModel.vaccineEntity.status == Status.SUCCESS}">
+
+            <TextView
+                android:id="@+id/tv_vaccine_first"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/vaccine_first"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_vaccine_first_percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{@string/vaccine_percent(IntExtensionKt.getPercentage(viewModel.vaccineEntity.data.totalFirstCnt))}"
+                android:textColor="@color/blue"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/tv_vaccine_first"
+                app:layout_constraintStart_toStartOf="@id/tv_vaccine_first"
+                app:layout_constraintTop_toBottomOf="@id/tv_vaccine_first" />
+
+            <TextView
+                android:id="@+id/tv_vaccine_first_new"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{IntExtensionKt.decimalFormat(viewModel.vaccineEntity.data.firstCnt)}"
+                android:textColor="@color/blue"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/ic_baseline_arrow_drop_up_24"
+                app:drawableTint="@color/blue"
+                app:layout_constraintEnd_toEndOf="@id/tv_vaccine_first"
+                app:layout_constraintStart_toStartOf="@id/tv_vaccine_first"
+                app:layout_constraintTop_toBottomOf="@id/tv_vaccine_first_percent" />
+
+            <TextView
+                android:id="@+id/tv_vaccine_first_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{IntExtensionKt.decimalFormat(viewModel.vaccineEntity.data.totalFirstCnt)}"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@id/tv_vaccine_first"
+                app:layout_constraintStart_toStartOf="@id/tv_vaccine_first"
+                app:layout_constraintTop_toBottomOf="@id/tv_vaccine_first_new" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_vaccine_completed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            app:layout_constraintBottom_toBottomOf="@id/layout_vaccine_first"
+            app:layout_constraintEnd_toStartOf="@id/layout_vaccine_additional"
+            app:layout_constraintStart_toEndOf="@id/layout_vaccine_first"
+            app:layout_constraintTop_toTopOf="@id/layout_vaccine_first"
+            app:visibleOrNot="@{viewModel.vaccineEntity.status == Status.SUCCESS}">
+
+            <TextView
+                android:id="@+id/tv_vaccine_completed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/vaccine_completed"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_vaccine_completed_percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{@string/vaccine_percent(IntExtensionKt.getPercentage(viewModel.vaccineEntity.data.totalSecondCnt))}"
+                android:textColor="@color/blue"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/tv_vaccine_completed"
+                app:layout_constraintStart_toStartOf="@id/tv_vaccine_completed"
+                app:layout_constraintTop_toBottomOf="@id/tv_vaccine_completed" />
+
+            <TextView
+                android:id="@+id/tv_vaccine_completed_new"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{IntExtensionKt.decimalFormat(viewModel.vaccineEntity.data.secondCnt)}"
+                android:textColor="@color/blue"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/ic_baseline_arrow_drop_up_24"
+                app:drawableTint="@color/blue"
+                app:layout_constraintEnd_toEndOf="@id/tv_vaccine_completed"
+                app:layout_constraintStart_toStartOf="@id/tv_vaccine_completed"
+                app:layout_constraintTop_toBottomOf="@id/tv_vaccine_completed_percent" />
+
+            <TextView
+                android:id="@+id/tv_vaccine_completed_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{IntExtensionKt.decimalFormat(viewModel.vaccineEntity.data.totalSecondCnt)}"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@id/tv_vaccine_completed"
+                app:layout_constraintStart_toStartOf="@id/tv_vaccine_completed"
+                app:layout_constraintTop_toBottomOf="@id/tv_vaccine_completed_new" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_vaccine_additional"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:padding="16dp"
+            app:layout_constraintBottom_toBottomOf="@id/layout_vaccine_completed"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/layout_vaccine_completed"
+            app:layout_constraintTop_toTopOf="@id/layout_vaccine_completed"
+            app:visibleOrNot="@{viewModel.vaccineEntity.status == Status.SUCCESS}">
+
+            <TextView
+                android:id="@+id/tv_vaccine_additional"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/vaccine_additional"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_vaccine_additional_percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{@string/vaccine_percent(IntExtensionKt.getPercentage(viewModel.vaccineEntity.data.totalThirdCnt))}"
+                android:textColor="@color/blue"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/tv_vaccine_additional"
+                app:layout_constraintStart_toStartOf="@id/tv_vaccine_additional"
+                app:layout_constraintTop_toBottomOf="@id/tv_vaccine_additional" />
+
+            <TextView
+                android:id="@+id/tv_vaccine_additional_new"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{IntExtensionKt.decimalFormat(viewModel.vaccineEntity.data.thirdCnt)}"
+                android:textColor="@color/blue"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/ic_baseline_arrow_drop_up_24"
+                app:drawableTint="@color/blue"
+                app:layout_constraintEnd_toEndOf="@id/tv_vaccine_additional"
+                app:layout_constraintStart_toStartOf="@id/tv_vaccine_additional"
+                app:layout_constraintTop_toBottomOf="@id/tv_vaccine_additional_percent" />
+
+            <TextView
+                android:id="@+id/tv_vaccine_additional_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{IntExtensionKt.decimalFormat(viewModel.vaccineEntity.data.totalThirdCnt)}"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@id/tv_vaccine_additional"
+                app:layout_constraintStart_toStartOf="@id/tv_vaccine_additional"
+                app:layout_constraintTop_toBottomOf="@id/tv_vaccine_additional_new" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tv_vaccine_standard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/vaccine_standard(viewModel.standardDate)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_vaccine_first"
+            app:visibleOrNot="@{viewModel.vaccineEntity.status == Status.SUCCESS}" />
+
+        <TextView
+            android:id="@+id/tv_vaccine_janssen_standard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:text="@string/vaccine_janssen_standard"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_vaccine_standard"
+            app:visibleOrNot="@{viewModel.vaccineEntity.status == Status.SUCCESS}" />
+
+        <TextView
+            android:id="@+id/vaccine_percentage_standard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:text="@string/vaccine_percentage_standard"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_vaccine_janssen_standard"
+            app:visibleOrNot="@{viewModel.vaccineEntity.status == Status.SUCCESS}" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group_vaccine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:checked="@={viewModel.chipSelected}"
+            app:chipSpacingHorizontal="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vaccine_percentage_standard"
+            app:selectionRequired="true"
+            app:singleSelection="true"
+            app:visibleOrNot="@{viewModel.vaccineEntity.status == Status.SUCCESS}">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_vaccine_first"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/vaccine_level_first"
+                app:chipEndPadding="16dp"
+                app:chipStartPadding="16dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_vaccine_completed"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/vaccine_level_completed"
+                app:chipEndPadding="16dp"
+                app:chipStartPadding="16dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_vaccine_additional"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/vaccine_level_additional"
+                app:chipEndPadding="16dp"
+                app:chipStartPadding="16dp" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_vaccine"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:overScrollMode="never"
+            app:addHeaderAndSubmitList="@{viewModel.vaccineList}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chip_group_vaccine"
+            app:selectedLevel="@{viewModel.chipSelected}"
+            app:visibleOrNot="@{viewModel.vaccineEntity.status == Status.SUCCESS}"
+            tools:listitem="@layout/item_vaccine_region" />
+
+        <include
+            layout="@layout/loading_state"
+            app:onClick="@{() -> viewModel.getVaccineInformation()}"
+            app:resource="@{viewModel.vaccineEntity}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.kimym.covid.util.Status" />
+
+        <import type="com.kimym.covid.util.IntExtensionKt" />
+
+        <variable
+            name="viewModel"
+            type="com.kimym.covid.presentation.infection.InfectionViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.covid.CovidFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_infection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:visibleOrNot="@{viewModel.infectionEntity.status == Status.SUCCESS}">
+
+            <TextView
+                android:id="@+id/tv_infection_new"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/infection_newly(viewModel.yesterdayDate)}"
+                android:textSize="28sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_infection_today"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@{IntExtensionKt.decimalFormat(viewModel.infectionEntity.data.incDec)}"
+                android:textColor="@color/red"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/ic_baseline_arrow_drop_up_24"
+                app:drawableTint="@color/red"
+                app:layout_constraintEnd_toStartOf="@id/tv_infection_total"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_infection_new" />
+
+            <TextView
+                android:id="@+id/tv_infection_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{IntExtensionKt.decimalFormat(viewModel.infectionEntity.data.defCnt)}"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_infection_today"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_infection_today"
+                app:layout_constraintTop_toTopOf="@id/tv_infection_today" />
+
+            <TextView
+                android:id="@+id/tv_infection_local"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toStartOf="@id/tv_infection_overseas"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_infection_today"
+                app:redTextFormat="@{@string/infection_local}"
+                app:redTextValue="@{IntExtensionKt.decimalFormat(viewModel.infectionEntity.data.localOccCnt)}"
+                app:startPosition="@{5}" />
+
+            <TextView
+                android:id="@+id/tv_infection_overseas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_infection_local"
+                app:layout_constraintTop_toTopOf="@id/tv_infection_local"
+                app:redTextFormat="@{@string/infection_foreign}"
+                app:redTextValue="@{IntExtensionKt.decimalFormat(viewModel.infectionEntity.data.overFlowCnt)}"
+                app:startPosition="@{5}" />
+
+            <TextView
+                android:id="@+id/tv_infection_standard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@{@string/infection_standard(viewModel.standardDate)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_infection_overseas" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_infection"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="24dp"
+            android:overScrollMode="never"
+            app:addHeaderAndSubmitList="@{viewModel.infectionList}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_infection"
+            app:visibleOrNot="@{viewModel.infectionEntity.status == Status.SUCCESS}"
+            tools:listitem="@layout/item_infection_region" />
+
+        <include
+            layout="@layout/loading_state"
+            app:onClick="@{() -> viewModel.getInfectionInformation()}"
+            app:resource="@{viewModel.infectionEntity}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

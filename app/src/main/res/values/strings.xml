@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">COVID-19</string>
+    <string name="infection_status">감염현황</string>
+    <string name="vaccination_status">백신접종현황</string>
+    <string name="infection_standard">(%s 00시 기준, \'20.1.3. 이후 누계, 단위: 명)</string>
+    <string name="infection_newly">%s 신규합계</string>
+    <string name="infection_local">국내발생 %s</string>
+    <string name="infection_foreign">해외유입 %s</string>
+    <string name="vaccine_first">전국1차접종</string>
+    <string name="vaccine_completed">전국접종완료</string>
+    <string name="vaccine_additional">전국추가접종</string>
+    <string name="vaccine_standard">(%s 00시 기준, \'21.2.26. 이후 누계, 단위: %%,명)</string>
+    <string name="vaccine_janssen_standard">1) 얀센 백신의 경우 1회 접종으로 기본 접종이 완료되므로\n얀센 1차 접종은 ‘1차접종’과 ‘접종완료’ 통계에 모두 추가하고,\n얀센 2차의 경우 추가접종 통계에 추가</string>
+    <string name="vaccine_percentage_standard">2) 인구 대비 접종률은 \'20.12월 행정안전부 주민등록인구현황(거주자) 기준\n(거주불명자, 재외국민 제외)</string>
+    <string name="vaccine_level_first">1차</string>
+    <string name="vaccine_level_completed">완료</string>
+    <string name="vaccine_level_additional">추가</string>
+    <string name="vaccine_percent">%s%%</string>
+    <string name="header_regional">지역</string>
+    <string name="header_total">누적</string>
+    <string name="header_newly">신규</string>
+</resources>
