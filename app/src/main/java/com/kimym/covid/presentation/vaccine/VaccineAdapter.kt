@@ -16,7 +16,7 @@ class VaccineAdapter : BaseCovidAdapter(R.layout.item_vaccine_region) {
             val items = when (list) {
                 null -> listOf(SealedInformation.Header)
                 else -> listOf(SealedInformation.Header) +
-                        list.map { SealedInformation.VaccineItem(it as VaccineLevelEntity) }
+                    list.map { SealedInformation.VaccineItem(it as VaccineLevelEntity) }
             }
             withContext(Dispatchers.Main) {
                 submitList(items)

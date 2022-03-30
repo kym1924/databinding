@@ -15,7 +15,8 @@ abstract class BaseCovidAdapter(@LayoutRes private val layoutRes: Int) :
     ListAdapter<SealedInformation, BaseViewHolder>(
         BaseDiffUtilItemCallback(
             itemsTheSame = { oldItem, newItem -> oldItem.seq == newItem.seq },
-            contentsTheSame = { oldItem, newItem -> oldItem == newItem })
+            contentsTheSame = { oldItem, newItem -> oldItem == newItem }
+        )
     ) {
     val adapterScope = CoroutineScope(Dispatchers.Default)
 

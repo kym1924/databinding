@@ -16,7 +16,7 @@ class InfectionAdapter : BaseCovidAdapter(R.layout.item_infection_region) {
             val items = when (list) {
                 null -> listOf(SealedInformation.Header)
                 else -> listOf(SealedInformation.Header) +
-                        list.map { SealedInformation.InfectionItem(it as InfectionEntity) }
+                    list.map { SealedInformation.InfectionItem(it as InfectionEntity) }
             }
             withContext(Dispatchers.Main) {
                 submitList(items)

@@ -2,11 +2,11 @@ package com.kimym.covid.presentation.vaccine
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.kimym.covid.data.entity.VaccinationLevel
 import com.kimym.covid.data.entity.VaccineEntity
 import com.kimym.covid.domain.usecase.GetVaccineInformationUseCase
 import com.kimym.covid.util.FormatDateUtil
 import com.kimym.covid.util.Resource
-import com.kimym.covid.data.entity.VaccinationLevel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
