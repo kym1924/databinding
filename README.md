@@ -5,9 +5,14 @@
 </div>
 
 # Data Binding
-The current Status of [Covid-19](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15043378) and [Vaccination](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15077756) in Korea using *Data Binding*.
-<br><br>
-<img width=360 height=760 src="https://user-images.githubusercontent.com/63637706/147762854-4471e99e-299a-4f73-a4e3-e9c9c01a64fd.gif"/>
+The current Status of Covid-19 and Vaccination in Korea using *Data Binding*.
+
+Click to see the [Covid-19 API](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15043378) and [Vaccination API](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15077756).
+
+<div>
+<img width=360 height=760 src="images/image_covid.png"/>
+<img width=360 height=760 src="images/image_vaccine.png"/>
+</div>
 
 #### 1. View Binding
 - `View Binding` is Library of Android Jetpack.
@@ -86,7 +91,7 @@ override fun onDestroyView() {
 - Easy to maintain activities(fragments).
 - `Data Binding` help prevent *memory leaks* and *null pointer exceptions*.
   - Improve app's performance.
-<br>
+  <br>
 
 #### 2-1. Get started The Data Binding Library
 - Data Binding Library can be used with devices running Android 4.0 (API level 14) or higher.
@@ -800,7 +805,7 @@ class DataBindingViewModel : ViewModel() {
       }
   }
   ```
-<br>
+  <br>
 
 #### 7-2. Escape Infinite loop
 - Unintended infinite loops are always dangerous and this is the same for Two-way Data Binding.
